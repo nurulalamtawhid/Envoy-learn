@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
+import Footer from '../SharedComponents/Footer';
 import Header from '../SharedComponents/Header';
 
 const Main = () => {
@@ -11,6 +12,7 @@ const Main = () => {
                 <Outlet></Outlet>
 
             </Container>
+            <Footer></Footer>
             
         </div>
     );

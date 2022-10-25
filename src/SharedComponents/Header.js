@@ -11,7 +11,10 @@ const Header = () => {
         <div>
             <Navbar collapseOnSelect expand="lg" className='bg-purple-400'>
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="#">
+                        <Link to={'/'}
+                        className='mt-3'
+                         >
                         <img
                             src={Brand1}
                             width="60"
@@ -19,6 +22,8 @@ const Header = () => {
                             className="d-inline-block align-top"
                             alt="React Bootstrap logo"
                         />
+                       
+                        </Link>
                          
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
