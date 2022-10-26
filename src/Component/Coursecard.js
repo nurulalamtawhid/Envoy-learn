@@ -19,7 +19,7 @@ const Coursecard = ({course}) => {
                         }
                     </p>
                 </div>
-                <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-emerald-600 text-gray-50">Read more</button>
+              
             </div>
         </div>
     );

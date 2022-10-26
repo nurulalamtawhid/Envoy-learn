@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 const Leftnav = () => {
     const [categories,setcategories] = useState([]);
@@ -12,6 +13,10 @@ const Leftnav = () => {
     },[]);
     return (
         <div>
+           <div className='mt-2 px-2 d-flex'>
+           <button type="button" className="px-8 py-3 mx-2 font-semibold rounded-full bg-gray-800 text-gray-100 d-flex align-items-center "><FaGoogle></FaGoogle>Google logIn</button>
+            <button type="button" className="px-8 py-3 font-semibold rounded-full bg-gray-800 text-gray-100 d-flex align-items-center "><FaGithub className=''></FaGithub>Github logIn</button>
+           </div>
             
             <div className='mt-2'>
                 {
