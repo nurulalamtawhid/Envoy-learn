@@ -15,11 +15,11 @@ const Leftnav = () => {
             
             <div className='mt-2'>
                 {
-                    categories.map(categori=><div className=" rounded-md shadow-md bg-violet-300 mb-2 text-gray-800" id={categori.id}>
+                    categories.map(categori=><div className=" rounded-md shadow-md bg-violet-300 mb-2 text-gray-800"  key={categori.id}>
                     
                     <div className="flex flex-col justify-between p-6">
                         <div className="space-y-2">
-                            <h2 className="text-xl font-semibold tracking-wide"><Link to={`/category/${categori.id}`}>{categori.name}</Link></h2>
+                            <h2 className="text-xl font-semibold tracking-wide"><Link className='no-underline'  to={`/category/${categori.id}`}>{categori.name}</Link></h2>
                             
                         </div>
                        

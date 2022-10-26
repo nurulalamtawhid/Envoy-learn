@@ -13,7 +13,7 @@ const Course = () => {
         
             <Row>
                 <Col lg='4'><Leftnav></Leftnav></Col>
-                <Col className='grid grid-cols-3 gap-3'>
+                <Col className='lg:grid grid-cols-3 gap-4'>
                 {
                     courses.map(course=><Coursecard
                     key={course._id}
