@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Leftnav = () => {
     const [categories,setcategories] = useState([]);
@@ -18,7 +19,7 @@ const Leftnav = () => {
                     
                     <div className="flex flex-col justify-between p-6">
                         <div className="space-y-2">
-                            <h2 className="text-xl font-semibold tracking-wide">{categori.name}</h2>
+                            <h2 className="text-xl font-semibold tracking-wide"><Link to={`/category/${categori.id}`}>{categori.name}</Link></h2>
                             
                         </div>
                        
