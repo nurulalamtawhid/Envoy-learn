@@ -6,8 +6,19 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
 import Brand1 from '../Assets/Brand1.png'
+import { FaUser } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/Authprovider';
+import Image from 'react-bootstrap/Image';
+
 
 const Header = () => {
+    const {user,Signingout} = useContext(AuthContext);
+    const handleSignout=()=>{
+        Signingout()
+        .then(()=>{})
+        .catch(error=>console.error(error))
+    }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" className='bg-purple-400'>
@@ -39,21 +50,41 @@ const Header = () => {
                             <Nav>
                                 <Nav.Link href="#"><Link to={"/blog"} className='text-white no-underline'>Blog</Link></Nav.Link>
                                 <Nav.Link href="#"><Link to={'/faq'} className='text-white no-underline'>FAQ </Link> </Nav.Link>
-                                <Nav.Link href="#features" className='text-white'>
-                                    <Form>
-                                        <Form.Check
-                                            type="switch"
-                                            id="custom-switch"
-                                            label=""
-                                        />
-                                    </Form>
+                                <Nav.Link href="" className='text-white'>
+                                <button type="button" onClick={handleSignout} className="px-4  font-semibold rounded-full bg-gray-800 text-gray-100">Signout</button>
+                                    
                                 </Nav.Link>
-                                <Nav.Link href="#deets" className='text-white'>DisplayName</Nav.Link>
-                            </Nav>
-                            <Nav.Link eventKey={2} href="#memes">
-                                Photo
+                                <Nav.Link eventKey={2} >
+                            {
+                                    user?.photoURL ?
+                                    <Image
+                                    style={{height : '40px'}}
+                                    roundedCircle
+                                    src={user?.photoURL}
+                                    ></Image>
+                                    : <FaUser></FaUser>
+                                }
                             </Nav.Link>
+                                <Nav.Link  className='text-white'>
+                                {
+                                    user?.uid?
+                                    <>
+                                    <span> {user?.displayName}</span>
+                                    <button type="button" onClick={handleSignout} className="px-4  font-semibold rounded-full bg-gray-800 text-gray-100">Signout</button>
+                                    
+                                    
+                                    </>
+                                    :
+                                    <>
+                                       <Link to='/login'><button type="button" className="px-4  font-semibold rounded-full bg-gray-800 text-gray-100">Login</button></Link>
+                                       <Link to='/register'><button type="button" className="px-4 mx-2 font-semibold rounded-full bg-rose-500 text-gray-100">Register</button></Link> 
+                                    </>
+                                }
+                                </Nav.Link>
+                            </Nav>
+                           
                         </Nav>
+                        
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

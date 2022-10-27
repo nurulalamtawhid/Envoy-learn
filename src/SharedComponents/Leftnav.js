@@ -3,19 +3,42 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/Authprovider';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Leftnav = () => {
     const [categories,setcategories] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/course-categories')
+        fetch('https://envoy-learn-server.vercel.app/course-categories')
         .then(res => res.json())
         .then(data => setcategories(data))
     },[]);
+    const {providerlogin} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
+    const handleGoogleSignIn =()=>{
+        providerlogin(googleProvider)
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
+    const handleGitSignIn = ()=>{
+        providerlogin(gitProvider)
+        .then(result=>{
+            const user = result.user;
+            
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
     return (
         <div>
            <div className='mt-2 px-2 d-flex'>
-           <button type="button" className="px-8 py-3 mx-2 font-semibold rounded-full bg-gray-800 text-gray-100 d-flex align-items-center "><FaGoogle></FaGoogle>Google logIn</button>
-            <button type="button" className="px-8 py-3 font-semibold rounded-full bg-gray-800 text-gray-100 d-flex align-items-center "><FaGithub className=''></FaGithub>Github logIn</button>
+           <button type="button" onClick={ handleGoogleSignIn} className="px-8 py-3 mx-2 font-semibold rounded-full bg-gray-800 text-gray-100 d-flex align-items-center "><FaGoogle></FaGoogle>Google logIn</button>
+            <button type="button" onClick={handleGitSignIn} className="px-8 py-3 font-semibold rounded-full bg-gray-800 text-gray-100 d-flex align-items-center "><FaGithub className=''></FaGithub>Github logIn</button>
            </div>
             
             <div className='mt-2'>
