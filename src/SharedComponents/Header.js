@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
+
 import { Link } from 'react-router-dom';
 
 import Brand1 from '../Assets/Brand1.png'
@@ -10,6 +10,8 @@ import { FaUser } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/Authprovider';
 import Image from 'react-bootstrap/Image';
+import { useState } from 'react';
+
 
 
 const Header = () => {
@@ -18,6 +20,32 @@ const Header = () => {
         Signingout()
         .then(()=>{})
         .catch(error=>console.error(error))
+    }
+    const [dark,setdark] = useState({
+        backgroundColor: 'black',
+        color :'white'
+    })
+    const [btntext,setbtntext] = useState('Dark')
+    const togglebtn =()=>{
+        if(dark.color ==='white'){
+            setdark(
+                {
+                   backgroundColor:'white',
+                    color:"black"
+                }
+            )
+            setbtntext('Light')
+        }
+        else{
+            setdark(
+                {
+                    backgroundColor:'black',
+                    color:"white"
+                }
+            )
+            setbtntext('Dark')
+            
+        }
     }
     return (
         <div>
@@ -51,17 +79,24 @@ const Header = () => {
                                 <Nav.Link href="#"><Link to={"/blog"} className='text-white no-underline'>Blog</Link></Nav.Link>
                                 <Nav.Link href="#"><Link to={'/faq'} className='text-white no-underline'>FAQ </Link> </Nav.Link>
                                 <Nav.Link href="" className='text-white'>
-                                <button type="button" onClick={handleSignout} className="px-4  font-semibold rounded-full bg-gray-800 text-gray-100">Signout</button>
+                                <button type="button" onClick={togglebtn} className="px-4  font-semibold rounded-full" style={dark}>{btntext}</button>
                                     
                                 </Nav.Link>
                                 <Nav.Link eventKey={2} >
                             {
                                     user?.photoURL ?
-                                    <Image
+                                   
+                                         <Image 
+                                   
                                     style={{height : '40px'}}
                                     roundedCircle
                                     src={user?.photoURL}
-                                    ></Image>
+                                    >
+                                        
+                                    </Image>
+
+                                  
+                                   
                                     : <FaUser></FaUser>
                                 }
                             </Nav.Link>
